@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 14, 2015 8:06:09 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+	<class name="com.springboot.poc.domain.PmCustomerLogin" table="pm_customer_login"
+		catalog="test" optimistic-lock="version">
+		<id name="pmCustomerId" type="java.lang.Long">
+			<column name="pm_customer_id" />
+			<generator class="identity" />
+		</id>
+		<property type="string" name="pmCustomerUniqueId">
+			<column name="pm_customer_unique_id" length="90" not-null="true"
+				unique="true" />
+		</property>
+		<property name="pmCustomerName" type="string">
+			<column name="pm_customer_name" length="135" />
+		</property>
+		<property name="pmEmailId" type="string">
+			<column name="pm_email_id" length="90" />
+		</property>
+		<property name="pmMobileNo" type="string">
+			<column name="pm_mob_no" length="90" />
+		</property>
+		<property name="pmLoginSource" type="string">
+			<column name="pm_login_source" length="20" />
+		</property>
+		<property name="pmHashPassword" type="string">
+			<column name="pm_hash_password" length="225" />
+		</property>
+		<set name="pmCustomerProfiles" table="pm_customer_profile"
+			cascade="all" inverse="true" lazy="false" fetch="select">
+			<key>
+				<column name="pm_customer_id" not-null="true" />
+			</key>
+			<one-to-many class="com.springboot.poc.domain.PmCustomerProfile" />
+		</set>
+	</class>
+	<query name="getCustomerLoginByEmailId">
+		<query-param name="customerEmailId" type="String" />
+		<![CDATA[from PmCustomerLogin pmCustomerLogin where pmCustomerLogin.pmEmailId= :customerEmailId ]]>
+	</query>
+
+</hibernate-mapping>

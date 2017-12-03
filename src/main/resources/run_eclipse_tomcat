@@ -1,0 +1,52 @@
+How to Run this Spring Boot Application
+
+Prerequisite
+a) Eclipse
+b) MySQL Server
+c) Maven(should be in class path)
+d) jdk1.8 (should be in class path)
+e) Add Tomcat 7 in eclipse
+
+a) Import this zip project in eclipse  (Download the latest eclipse version from net)
+b) Check hibernate.hbm2ddl.auto property in application.properties  in src/main/resources.
+   This property should be 'create' as this will create the mysql db with name 'test'. 
+   If DB with 'test' is already created then make this property as 'update' and skip
+   point no e), f) and g). 
+c) Add this project in Tomcat Instance of eclipse to deploy.
+d) Start the Tomcat.
+e) Once deployed - Check the DB. 'test' DB must have been created with two tables -
+   pm_customer_login and pm_customer_profile
+f) Go back to application.properties and update hibernate.hbm2ddl.auto as update so that
+   next time when you start the server DB should not be created afresh.
+g) Restart the server with above command - mvn spring-boot:run
+h) Register the customer first with http://localhost:8080/spring-boot/registerCustomer in postman using
+   below json - 
+   {
+    "emailId":"", 
+    "pwd":"",
+    "customerName":"",
+    "mobNo":"",
+    "customerAddress":"",
+    "customerSex":"",
+    "customerAge":"",
+    "customerLocality":"",
+    "customerCity":"",
+    "customerState":"",
+    "customerCountry":""
+   }
+i) Check the DB for the above data
+j) Now fetch the details with http://localhost:8080/spring-boot/customerDetails in postman using below
+   json - 
+   {
+    "emailId":""
+   }
+k) There is one more method to validate the customer http://localhost:8080/spring-boot/validateCustomer
+   use below json
+   {
+    "emailId":"",
+    "pwd":""
+   }
+   
+This application now runs in both the way with or with out Tomcat as server in eclipse.
+Only difference would be the URL.(check spring-boot in the URL is added as context)
+To run this application as spring-boot without deploying on Tomcat in eclipse refer run.txt file.

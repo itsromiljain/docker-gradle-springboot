@@ -1,0 +1,52 @@
+How to Run this Spring Boot Application
+
+Prerequisite
+a) Eclipse Mars
+b) MySQL Server
+c) Maven(should be in class path)
+d) jdk1.8 (should be in class path)
+e) No Expilcit Tomcat required as it comes with spring boot
+
+a) Import this zip project in eclipse Mars (Download the latest eclipse version from net)
+b) Check hibernate.hbm2ddl.auto property in application.properties in src/main/resources.
+   This property should be 'create' as this will create the mysql db with name 'test'.
+   If DB with 'test' is already created then make this property as 'update' and skip
+   point no f), g) and h).  
+c) Open CMD (if using windows) and navigate to project folder ($(HOME)/spring-boot)
+d) run 'mvn clean' to clean up
+e) run 'mvn spring-boot:run' to start the spring boot.(this will also start the tomcat server
+   embedded with spring boot)
+f) Once complete - Check the DB. 'test' DB must have been created with two tables -
+   pm_customer_login and pm_customer_profile
+g) Go back to application.properties and update hibernate.hbm2ddl.auto as update so that
+   next time when you start the server DB should not be created afresh.
+h) Restart the server with above command - mvn spring-boot:run
+i) Register the customer first with http://localhost:8080/registerCustomer in postman using
+   below json - 
+   {
+    "emailId":"romil2707@gmail.com", 
+    "pwd":"123",
+    "customerName":"Romil",
+    "mobNo":"4085042794",
+    "customerAddress":"450 N Mathilda, Sunnyvale",
+    "customerSex":"M",
+    "customerAge":"31",
+    "customerLocality":"The Montclair",
+    "customerCity":"Sunnyvale",
+    "customerState":"California",
+    "customerCountry":"USA"
+   }
+j) Check the DB for the above data
+k) Now fetch the details with http://localhost:8080/customerDetails in postman using below
+   json - 
+   {
+    "emailId":"romil2707@gmail.com"
+   }
+l) There is one more method to validate the customer http://localhost:8080/validateCustomer
+   use below json
+   {
+    "emailId":"romil2707@gmail.com",
+    "pwd":"123"
+   }
+   
+This application runs without installing tomcat as server in eclipse. Soon I will publish the way to deploy spring boot application in eclipse tomcat server directly.

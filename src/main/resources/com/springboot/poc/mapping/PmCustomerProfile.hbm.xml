@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 14, 2015 8:06:09 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+	<class name="com.springboot.poc.domain.PmCustomerProfile" table="pm_customer_profile"
+		catalog="test" optimistic-lock="version">
+		<id name="pmCustomerProfileId" type="long">
+			<column name="pm_customer_profile_id" />
+			<generator class="identity" />
+		</id>
+		<many-to-one name="pmCustomerLogin"
+			class="com.springboot.poc.domain.PmCustomerLogin" fetch="select">
+			<column name="pm_customer_id" not-null="true" />
+		</many-to-one>
+		<property name="pmCustomerAddress" type="string">
+			<column name="pm_customer_address" length="150" />
+		</property>
+		<property name="pmCustomerSex" type="string">
+			<column name="pm_customer_sex" length="45" />
+		</property>
+		<property name="pmCustomerAge" type="java.lang.Integer">
+			<column name="pm_customer_age" />
+		</property>
+		<property name="pmCustomerBirthdate" type="timestamp">
+			<column name="pm_customer_birthdate" length="19" />
+		</property>
+		<property name="pmCustomerAnniversary" type="timestamp">
+			<column name="pm_customer_anniversary" length="19" />
+		</property>
+		<property name="pmCustomerLocality" type="string">
+			<column name="pm_customer_locality" length="135" />
+		</property>
+		<property name="pmCustomerCity" type="string">
+			<column name="pm_customer_city" length="135" />
+		</property>
+		<property name="pmCustomerState" type="string">
+			<column name="pm_customer_state" length="135" />
+		</property>
+		<property name="pmCustomerCountry" type="string">
+			<column name="pm_customer_country" length="135" />
+		</property>
+	</class>
+	<query name="getCustomerProfileByUniqueId">
+		<query-param name="uniqueId" type="String" />
+	  <![CDATA[from PmCustomerProfile pmCustomerProfile where pmCustomerProfile.pmCustomerLogin.pmCustomerUniqueId= :uniqueId ]]>
+	</query>
+</hibernate-mapping>
