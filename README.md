@@ -1,2 +1,2 @@
-# Spring Boot POC
+# Dockerize Spring Boot POC
 # docker-gradle-springboot
