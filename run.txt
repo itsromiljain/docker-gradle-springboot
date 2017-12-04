@@ -24,29 +24,29 @@ h) Restart the server with above command - mvn spring-boot:run
 i) Register the customer first with http://localhost:8080/registerCustomer in postman using
    below json - 
    {
-    "emailId":"romil2707@gmail.com", 
-    "pwd":"123",
-    "customerName":"Romil",
-    "mobNo":"4085042794",
-    "customerAddress":"450 N Mathilda, Sunnyvale",
-    "customerSex":"M",
-    "customerAge":"31",
-    "customerLocality":"The Montclair",
-    "customerCity":"Sunnyvale",
-    "customerState":"California",
-    "customerCountry":"USA"
+    "emailId":"", 
+    "pwd":"",
+    "customerName":"",
+    "mobNo":"",
+    "customerAddress":"",
+    "customerSex":"",
+    "customerAge":"",
+    "customerLocality":"",
+    "customerCity":"",
+    "customerState":"",
+    "customerCountry":""
    }
 j) Check the DB for the above data
 k) Now fetch the details with http://localhost:8080/customerDetails in postman using below
    json - 
    {
-    "emailId":"romil2707@gmail.com"
+    "emailId":""
    }
 l) There is one more method to validate the customer http://localhost:8080/validateCustomer
    use below json
    {
-    "emailId":"romil2707@gmail.com",
-    "pwd":"123"
+    "emailId":"",
+    "pwd":""
    }
    
 This application runs without installing tomcat as server in eclipse. Soon I will publish the way to deploy spring boot application in eclipse tomcat server directly.
